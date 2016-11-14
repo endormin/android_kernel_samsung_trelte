@@ -237,8 +237,8 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 			     min_score_adj,
 			     other_free * (long)(PAGE_SIZE / 1024));
 		lowmem_deathpending_timeout = jiffies + HZ;
-		send_sig(SIGKILL, selected, 0);
 		set_tsk_thread_flag(selected, TIF_MEMDIE);
+		send_sig(SIGKILL, selected, 0);		
 		rem -= selected_tasksize;
 		rcu_read_unlock();
 		lowmem_lmkcount++;
@@ -414,8 +414,8 @@ static int android_oom_handler(struct notifier_block *nb,
 		lowmem_print(1, "oom: send sigkill to %d (%s), adj %d, size %d\n",
 			     selected->pid, selected->comm,
 			     selected_oom_score_adj, selected_tasksize);
-		send_sig(SIGKILL, selected, 0);
 		set_tsk_thread_flag(selected, TIF_MEMDIE);
+		send_sig(SIGKILL, selected, 0);		
 		rem -= selected_tasksize;
 		*freed += (unsigned long)selected_tasksize;
 #ifdef OOM_COUNT_READ
