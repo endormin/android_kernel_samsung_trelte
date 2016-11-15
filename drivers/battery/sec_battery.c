@@ -4856,7 +4856,7 @@ static int sec_bat_parse_dt(struct device *dev,
 	ret = of_property_read_u32(np, "battery,swelling_chg_current",
 				   (unsigned int *)&pdata->swelling_chg_current);
 	if (ret) {
-		pdata->swelling_chg_current = 0;
+		pdata->swelling_chg_current = BATT_SWELLING_CHG_CURRENT;
 		pr_info("%s: swelling low temp chg current is Empty\n", __func__);
 	}
 
@@ -4877,14 +4877,14 @@ static int sec_bat_parse_dt(struct device *dev,
 	ret = of_property_read_u32(np, "battery,swelling_high_rechg_voltage",
 		(unsigned int *)&pdata->swelling_high_rechg_voltage);
 	if (ret) {
-		pdata->swelling_high_rechg_voltage = BATT_SWELLING_RECHG_VOLTAGE;
+		pdata->swelling_high_rechg_voltage = BATT_SWELLING_HIGH_RECHG_VOLTAGE;
 		pr_info("%s: swelling_high_rechg_voltage is Empty\n", __func__);
 	}
 
 	ret = of_property_read_u32(np, "battery,swelling_low_rechg_voltage",
 		(unsigned int *)&pdata->swelling_low_rechg_voltage);
 	if (ret) {
-		pdata->swelling_low_rechg_voltage = BATT_SWELLING_RECHG_VOLTAGE;
+		pdata->swelling_low_rechg_voltage = BATT_SWELLING_LOW_RECHG_VOLTAGE;
 		pr_info("%s: swelling_low_rechg_voltage is Empty\n", __func__);
 	}
 
